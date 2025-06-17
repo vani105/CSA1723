@@ -31,3 +31,5 @@ if path:
     print("Path of states followed:", path)
 else:
     print("No solution found.")
+
+Path of states followed: [(0, 0), (0, 3), (3, 0), (3, 3), (4, 2)]
