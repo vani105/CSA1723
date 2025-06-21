@@ -1,0 +1,39 @@
+from collections import deque
+
+def is_valid(state):
+    ml, cl, mr, cr = state
+    return (ml >= 0 and cl >= 0 and mr >= 0 and cr >= 0 and
+            (ml == 0 or ml >= cl) and (mr == 0 or mr >= cr))
+
+def successors(state, boat):
+    children = []
+    m, c = (state[0], state[1]) if boat == 'left' else (state[2], state[3])
+    for dm in range(3):
+        for dc in range(3):
+            if 0 < dm + dc <= 2:
+                new_m, new_c = m - dm, c - dc
+                if boat == 'left':
+                    new_state = (new_m, new_c, state[2] + dm, state[3] + dc)
+                else:
+                    new_state = (state[0] + dm, state[1] + dc, new_m, new_c)
+                if is_valid(new_state):
+                    children.append((new_state, 'right' if boat == 'left' else 'left'))
+    return children
+
+def solve():
+    initial = (3, 3, 0, 0)
+    queue = deque([(initial, 'left', [])])
+    visited = set()
+    while queue:
+        state, boat, path = queue.popleft()
+        if state == (0, 0, 3, 3):
+            return path
+        if (state, boat) in visited:
+            continue
+        visited.add((state, boat))
+        for next_state, next_boat in successors(state, boat):
+            queue.append((next_state, next_boat, path + [(next_state, next_boat)]))
+
+solution = solve()
+for step in solution:
+    print(step[0], "boat:", step[1])
