@@ -1,0 +1,27 @@
+def vacuum_cleaner(environment, location):
+    print(f"Initial state: {environment}, Vacuum at: {location}")
+    actions = []
+
+    if environment[location] == 'dirty':
+        actions.append('Suck')
+        environment[location] = 'clean'
+
+    # Move to the other room
+    other = 'B' if location == 'A' else 'A'
+    actions.append(f'Move to {other}')
+
+    if environment[other] == 'dirty':
+        actions.append('Suck')
+        environment[other] = 'clean'
+
+    print(f"Final state: {environment}")
+    print("Actions taken:", ' -> '.join(actions))
+
+# Example environment: both rooms dirty
+env = {'A': 'dirty', 'B': 'dirty'}
+vacuum_cleaner(env, 'A')
+
+Output:
+Initial state: {'A': 'dirty', 'B': 'dirty'}, Vacuum at: A
+Final state: {'A': 'clean', 'B': 'clean'}
+Actions taken: Suck -> Move to B -> Suck
