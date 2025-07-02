@@ -1,0 +1,34 @@
+import itertools
+
+def calculate_distance(path, graph):
+    return sum(graph[path[i]][path[i+1]] for i in range(len(path) - 1)) + graph[path[-1]][path[0]]
+
+def travelling_salesman(graph):
+    cities = list(graph.keys())
+    min_path = None
+    min_cost = float('inf')
+
+    for path in itertools.permutations(cities):
+        cost = calculate_distance(path, graph)
+        if cost < min_cost:
+            min_cost = cost
+            min_path = path
+
+    return min_path, min_cost
+
+def main():
+    # Example graph (distance matrix)
+    graph = {
+        'A': {'A': 0, 'B': 10, 'C': 15, 'D': 20},
+        'B': {'A': 10, 'B': 0, 'C': 35, 'D': 25},
+        'C': {'A': 15, 'B': 35, 'C': 0, 'D': 30},
+        'D': {'A': 20, 'B': 25, 'C': 30, 'D': 0}
+    }
+    
+    best_path, best_cost = travelling_salesman(graph)
+    
+    print("Optimal Path:", best_path)
+    print("Total Cost:", best_cost)
+
+if __name__ == "__main__":
+    main()
