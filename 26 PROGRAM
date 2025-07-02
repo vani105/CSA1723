@@ -1,0 +1,26 @@
+% Tell Prolog to allow non-contiguous definitions
+:- discontiguous at/2.
+:- discontiguous has/2.
+
+% Location facts
+at(monkey, floor).
+at(monkey, chair).
+at(banana, ceiling).
+
+% Object position
+under(chair, banana).
+
+% Ownership facts
+has(monkey, nothing).
+
+% Monkey can reach banana if standing on chair and chair is under banana
+can_reach(monkey, banana) :-
+    at(monkey, chair),
+    under(chair, banana).
+
+% Monkey has banana if it can reach it
+has(monkey, banana) :-
+    can_reach(monkey, banana).
+OUTPUT:
+has(monkey, banana).
+1true
