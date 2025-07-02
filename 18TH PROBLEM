@@ -1,0 +1,10 @@
+% Facts: dob(Name, DOB)
+dob(john, '1995-06-27').
+dob(susan, '1990-12-15').
+dob(mary, '2000-01-10').
+dob(david, '1998-03-22').
+dob(alice, '1992-08-05').
+
+OUTPUT:
+dob(alice, X).
+X = '1992-08-05
