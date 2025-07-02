@@ -1,0 +1,15 @@
+symptom(fever).
+symptom(cough).
+symptom(headache).
+
+disease(flu) :- symptom(fever), symptom(cough).
+disease(migraine) :- symptom(headache).
+
+diagnose(D) :- disease(D), write('Diagnosis: '), write(D), nl.
+
+OUTPUT:
+diagnose(D).
+Diagnosis: flu
+D = flu
+Diagnosis: migraine
+D = migraine
