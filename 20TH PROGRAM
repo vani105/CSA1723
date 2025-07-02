@@ -1,0 +1,24 @@
+% planet(Name, PositionFromSun, Type).
+planet(mercury, 1, terrestrial).
+planet(venus, 2, terrestrial).
+planet(earth, 3, terrestrial).
+planet(mars, 4, terrestrial).
+planet(jupiter, 5, gas_giant).
+planet(saturn, 6, gas_giant).
+planet(uranus, 7, ice_giant).
+planet(neptune, 8, ice_giant).
+
+% Rule to get all inner planets (Position ≤ 4)
+inner_planet(Name) :-
+    planet(Name, Position, _),
+    Position =< 4.
+
+% Rule to get all outer planets (Position ≥ 5)
+outer_planet(Name) :-
+    planet(Name, Position, _),
+    Position >= 5.
+
+OUTPUT:
+planet(earth, Position, Type).
+Position = 3,
+Type = terrestrial
