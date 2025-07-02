@@ -1,0 +1,51 @@
+def is_valid_assignment(map_graph, assignment, region, color):
+    for neighbor in map_graph[region]:
+        if neighbor in assignment and assignment[neighbor] == color:
+            return False
+    return True
+
+def backtracking(map_graph, colors, assignment):
+    if len(assignment) == len(map_graph):
+        return assignment
+    
+    uncolored_regions = [r for r in map_graph if r not in assignment]
+    region = uncolored_regions[0]
+
+    for color in colors:
+        if is_valid_assignment(map_graph, assignment, region, color):
+            assignment[region] = color
+            result = backtracking(map_graph, colors, assignment)
+            if result:
+                return result
+            assignment.pop(region)
+    
+    return None
+
+def map_coloring(map_graph, colors):
+    return backtracking(map_graph, colors, {})
+
+def main():
+    # Example map graph (adjacency list representation)
+    map_graph = {
+        'WA': ['NT', 'SA'],
+        'NT': ['WA', 'SA', 'Q'],
+        'SA': ['WA', 'NT', 'Q', 'NSW', 'V'],
+        'Q': ['NT', 'SA', 'NSW'],
+        'NSW': ['SA', 'Q', 'V'],
+        'V': ['SA', 'NSW'],
+        'T': []  # Tasmania, isolated
+    }
+
+    colors = ['Red', 'Green', 'Blue']
+    solution = map_coloring(map_graph, colors)
+
+    print("Map Coloring Solution:")
+    print(solution)
+
+if __name__ == "__main__":
+    main()
+
+OUTPUT:
+
+Map Coloring Solution:
+{'WA': 'Red', 'NT': 'Green', 'SA': 'Blue', 'Q': 'Red', 'NSW': 'Green', 'V': 'Red', 'T': 'Red'}
