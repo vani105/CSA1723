@@ -1,0 +1,15 @@
+can_fly(sparrow).
+can_fly(eagle).
+cannot_fly(penguin).
+cannot_fly(ostrich).
+
+fly_status(Bird) :-
+    can_fly(Bird), write(Bird), write(' can fly.'), nl.
+
+fly_status(Bird) :-
+    cannot_fly(Bird), write(Bird), write(' cannot fly.'), nl.
+
+OUTPUT:
+fly_status(sparrow).
+sparrow can fly.
+1true
