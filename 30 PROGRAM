@@ -1,0 +1,10 @@
+fact(a).
+fact(b).
+rule(c) :- fact(a), fact(b).
+
+infer(X) :- rule(X), write(X), write(' is inferred using forward chaining.'), nl.
+
+OUTPUT:
+infer(c).
+c is inferred using forward chaining.
+1true
