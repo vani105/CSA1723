@@ -1,0 +1,75 @@
+# Import necessary libraries
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+
+# Load the Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Split dataset into training and testing (70% training, 30% testing)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create and train the Decision Tree model
+model = DecisionTreeClassifier()
+model.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = model.predict(X_test)
+
+# Print Yes/No output based on correctness
+print("Predicted  Actual  Correct?")
+for pred, actual in zip(y_pred, y_test):
+    result = "Yes" if pred == actual else "No"
+    print(f"{pred:^9} {actual:^7} {result}")
+
+
+OUTPUT:
+
+Predicted  Actual  Correct?
+    1        1    Yes
+    0        0    Yes
+    2        2    Yes
+    1        1    Yes
+    1        1    Yes
+    0        0    Yes
+    1        1    Yes
+    2        2    Yes
+    1        1    Yes
+    1        1    Yes
+    2        2    Yes
+    0        0    Yes
+    0        0    Yes
+    0        0    Yes
+    0        0    Yes
+    1        1    Yes
+    2        2    Yes
+    1        1    Yes
+    1        1    Yes
+    2        2    Yes
+    0        0    Yes
+    2        2    Yes
+    0        0    Yes
+    2        2    Yes
+    2        2    Yes
+    2        2    Yes
+    2        2    Yes
+    2        2    Yes
+    0        0    Yes
+    0        0    Yes
+    0        0    Yes
+    0        0    Yes
+    1        1    Yes
+    0        0    Yes
+    0        0    Yes
+    2        2    Yes
+    1        1    Yes
+    0        0    Yes
+    0        0    Yes
+    0        0    Yes
+    2        2    Yes
+    1        1    Yes
+    1        1    Yes
+    0        0    Yes
+    0        0    Yes
