@@ -30,5 +30,11 @@ def main():
     print("Optimal Path:", best_path)
     print("Total Cost:", best_cost)
 
+
+OUTPUT:
+
+Optimal Path: ('A', 'B', 'D', 'C')
+Total Cost: 80
+
 if __name__ == "__main__":
     main()
