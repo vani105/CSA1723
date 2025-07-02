@@ -1,0 +1,14 @@
+fruit(apple, red).
+fruit(banana, yellow).
+fruit(grape, purple).
+fruit(orange, orange).
+
+% Backtracking over fruit
+fruit_color(Color) :-
+    fruit(Fruit, Color),
+    write(Fruit), nl.
+
+OUTPUT:
+fruit_color(yellow).
+banana
+1true
