@@ -1,0 +1,16 @@
+parent(john, mary).
+parent(john, david).
+parent(mary, alice).
+parent(david, tom).
+
+male(john).
+male(david).
+male(tom).
+female(mary).
+female(alice).
+
+grandparent(X, Y) :- parent(X, Z), parent(Z, Y).
+
+OUTPUT:
+grandparent(john, alice).
+1true
