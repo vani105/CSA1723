@@ -1,0 +1,13 @@
+diet(diabetes, 'High fiber, Low sugar').
+diet(hypertension, 'Low salt, More potassium').
+diet(obesity, 'Low fat, High protein').
+diet(anemia, 'Iron-rich foods').
+
+suggest_diet(Disease) :-
+    diet(Disease, Plan),
+    write('Diet plan for '), write(Disease), write(': '), write(Plan), nl.
+
+OUTPUT:
+suggest_diet(obesity).
+Diet plan for obesity: Low fat, High protein
+1true
