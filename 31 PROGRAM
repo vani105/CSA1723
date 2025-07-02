@@ -1,0 +1,10 @@
+goal(x) :- condition(a), condition(b).
+condition(a).
+condition(b).
+
+prove(X) :- goal(X), write(X), write(' proven using backward chaining.'), nl.
+
+OUTPUT:
+prove(x).
+x proven using backward chaining.
+1true
