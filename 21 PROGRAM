@@ -1,0 +1,20 @@
+move(1, A, B, _) :-
+    write('Move disk from '), write(A), write(' to '), write(B), nl.
+
+move(N, A, B, C) :-
+    N > 1,
+    M is N - 1,
+    move(M, A, C, B),
+    move(1, A, B, _),
+    move(M, C, B, A).
+
+OUTPUT:
+move(3, left, right, center).
+Move disk from left to right
+Move disk from left to center
+Move disk from right to center
+Move disk from left to right
+Move disk from center to left
+Move disk from center to right
+Move disk from left to right
+1true
