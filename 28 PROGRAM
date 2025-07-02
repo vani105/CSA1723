@@ -1,0 +1,46 @@
+% Define the edges and costs (undirected graph)
+edge(a, b, 1).
+edge(a, c, 3).
+edge(b, d, 2).
+edge(c, d, 1).
+
+% Define heuristic values for each node
+heuristic(a, 4).
+heuristic(b, 2).
+heuristic(c, 2).
+heuristic(d, 0).
+
+% Best First Search: Wrapper
+best_first(Start, Goal, Path) :-
+    best_first_search([[Start]], Goal, RevPath),
+    reverse(RevPath, Path).
+
+% If head of path is goal, done
+best_first_search([[Goal|Rest]|_], Goal, [Goal|Rest]).
+
+% Otherwise, expand path
+best_first_search([CurrentPath|OtherPaths], Goal, FinalPath) :-
+    CurrentPath = [CurrentNode|_],
+    findall([Next,CurrentNode|RestPath],
+            (edge(CurrentNode, Next, _),
+             \+ member(Next, CurrentPath),
+             CurrentPath = [CurrentNode|RestPath]),
+            NewPaths),
+    append(OtherPaths, NewPaths, AllPaths),
+    sort_paths_by_heuristic(AllPaths, SortedPaths),
+    best_first_search(SortedPaths, Goal, FinalPath).
+
+% Sort paths by heuristic of their head
+sort_paths_by_heuristic(Paths, Sorted) :-
+    map_list_to_pairs(path_heuristic, Paths, Paired),
+    keysort(Paired, SortedPaired),
+    pairs_values(SortedPaired, Sorted).
+
+% Get heuristic value of the current node (head of path)
+path_heuristic([Node|_], H) :-
+    heuristic(Node, H).
+
+OUTPUT:
+best_first(a, d, Path).
+Path = [a, b, d]
+Path = [a, c, d]
