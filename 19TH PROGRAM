@@ -1,0 +1,20 @@
+% Teacher teaches subject code
+teaches(mr_smith, cs101).
+teaches(ms_jones, ma102).
+teaches(dr_brown, ph103).
+
+% Student studies subject code
+studies(alice, cs101).
+studies(bob, ma102).
+studies(charlie, ph103).
+studies(david, cs101).
+studies(eva, ph103).
+
+% Rule to find which teacher teaches a student
+teacher_of_student(Student, Teacher) :-
+    studies(Student, SubCode),
+    teaches(Teacher, SubCode).
+
+OUTPUT:
+teacher_of_student(alice, T).
+T = mr_smith
